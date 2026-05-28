@@ -1,4 +1,3 @@
-
 import cv2
 import time
 import pandas as pd
@@ -7,10 +6,8 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from ultralytics import YOLO, RTDETR
 
-
 VIDEO_PATH = r"TownCentreXVID.mp4"
 MAX_FRAMES = 500  
-
 
 LINE_P1 = (1798, 747)  
 LINE_P2 = (169, 456)   
@@ -113,9 +110,9 @@ for model_name in MODELS:
                             video_seconds = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
                             timestamp = time.strftime("%H:%M:%S", time.gmtime(video_seconds))
                             if cy > prev_cy:
-                                print(f"[{timestamp}] 📥 LINE CROSS: Pedestrian #{track_id} walked DOWN screen / Exited.")
+                                print(f"[{timestamp}]  LINE CROSS: Pedestrian #{track_id} walked DOWN screen / Exited.")
                             else:
-                                print(f"[{timestamp}] 📤 LINE CROSS: Pedestrian #{track_id} walked UP screen / Entered.")
+                                print(f"[{timestamp}]  LINE CROSS: Pedestrian #{track_id} walked UP screen / Entered.")
                             
                 box_color = (255, 0, 0) if track_id in logged_crossings else (0, 255, 0)
                 cv2.rectangle(frame, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), box_color, 2)
@@ -151,7 +148,7 @@ for model_name in MODELS:
     BENCHMARK_DATA[model_name]["people_crossed"] = len(logged_crossings)
 
 
-print("\n📊 Model runs completed. Generating comparison visualization grid...")
+print("\nModel runs completed. Generating comparison visualization grid...")
 
 fig = plt.figure(figsize=(20, 14), facecolor="#0D0D1A")
 fig.suptitle(
@@ -307,6 +304,6 @@ ax8.set_title("Quick Reference Table", color="#AAAACC", fontsize=10, fontweight=
 
 out_path = "model_comparison_report.png"
 plt.savefig(out_path, dpi=180, bbox_inches="tight", facecolor=fig.get_facecolor())
-print(f"✅ Saved chart report successfully → {out_path}")
+print(f"Saved chart report successfully → {out_path}")
 plt.show()
 
