@@ -1,7 +1,3 @@
-
-
----
-
 # Pedestrian Detection and Tracking Analytics
 
 This project evaluates and compares different object detection models for real-time person tracking and line-crossing analytics on video streams. It uses a custom-defined diagonal tripwire threshold to log entries and exits.
@@ -17,19 +13,27 @@ Ensure you have Python 3.8 or higher installed on your system.
 Install the required packages using pip:
 
 ```bash
-pip install opencv-python ultralytics pandas
+pip install opencv-python ultralytics pandas kagglehub
 
 ```
 
-*Note: The `ultralytics` library automatically handles the downloading of the pre-trained model weights (`yolov8n.pt`, `yolo11n.pt`, and `rtdetr-l.pt`) upon first execution.*
+## Dataset Download Instructions
 
-## Dataset Used
+The Oxford Town Centre dataset is hosted on Kaggle. To download the dataset automatically via the terminal without using a web browser, utilize the kagglehub utility package.
 
-The project uses the **Oxford Town Centre Dataset**, a benchmark dataset widely used for multiple object tracking evaluation.
+Run this Python script to download the data to your local machine's unified cache:
 
-* **Source:** University of Oxford / Kaggle
-* **Resolution:** 1920x1080 (Full HD) at 25 frames per second
-* **Scene Description:** A high-resolution, static overhead view of a busy pedestrian street corner (Cornmarket Street, Oxford, UK).
-* **Video File Name:** `TownCentreXVID.avi`
+```python
+import kagglehub
 
-Ensure the downloaded video file path corresponds to the `VIDEO_PATH` variable defined at the top of your execution scripts.
+# Download latest version of the Oxford Town Centre dataset
+path = kagglehub.dataset_download("almightyj/oxford-town-centre")
+print("Dataset downloaded to:", path)
+
+```
+
+## Moving the Data to Your Workspace
+
+1. Navigate to the path printed by the script above.
+2. Locate the folder named `versions/1` and find the file named `TownCentreXVID.avi`.
+3. Copy or move `TownCentreXVID.avi` directly into the root folder of this cloned repository, or update the `VIDEO_PATH` variable in the script to match this cache folder location.
