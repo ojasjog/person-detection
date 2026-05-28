@@ -42,6 +42,11 @@ print("Dataset downloaded to:", path)
 
 The framework evaluates three models across distinct structural archetypes over a 500-frame sequence using an identical diagonal tripwire threshold ($P_1$: 1798, 747 to $P_2$: 169, 456).
 
+In the context of this tracking system's layout and coordinate space, **"entered"** and **"exited"** are strictly defined by the direction a pedestrian's vertical position moves across the pixel grid once they cross the custom line:
+
+* **Entered (Walked UP screen):** A pedestrian is logged as *Entered* if their bottom-center vertical foot coordinate ($C_y$) is **less than or equal to** their previous frame's coordinate ($\text{prev\_}C_y$). Because the pixel origin $(0,0)$ in computer vision frameworks starts at the top-left corner of the screen, moving *UP* the screen decreases the $Y$-pixel value.
+* **Exited (Walked DOWN screen):** A pedestrian is logged as *Exited* if their current vertical foot coordinate ($C_y$) is **greater than** their previous frame's coordinate ($\text{prev\_}C_y$). Moving *DOWN* the screen increases the $Y$-pixel value as it moves further away from the top-left origin.
+
 ### Performance Metrics Summary
 
 | Evaluation Metric | YOLOv8-Nano | YOLO11-Nano | RT-DETR-Large |
