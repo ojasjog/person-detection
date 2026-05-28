@@ -65,8 +65,4 @@ In the context of this tracking system's layout and coordinate space, **"entered
 
 ![Report](model_comparison_report.png)
 
-### Key Analytical Findings
-
-* **Edge Deployment Feasibility:** YOLO11-Nano demonstrates the highest operational efficiency, executing at 14.0 FPS on CPU with a minimized footprint of 2.6M parameters. It completely replaces the legacy YOLOv8-Nano baseline by improving processing speed and accuracy concurrently.
-* **Transformer Core Bottleneck:** RT-DETR-Large delivers superior raw precision (0.91) and structural accuracy (67.2% mAP@0.5), yet experiences a critical performance penalty on standard sequential hardware, dropping to 2.0 FPS with a latency spike of 487.35 ms. This showcases the severe hardware constraints introduced by global self-attention mechanisms when run without dedicated GPU acceleration.
-* **Downstream Tracking Saturation:** Despite the massive scale discrepancy between the 2.6M parameter YOLO11-Nano and the 32.9M parameter RT-DETR-Large, both architectures converged on almost identical line-crossing tracking counts (18 vs 17 unique crossings). This confirms that under clear spatial visibility conditions, localized architectural optimizations saturate tracking performance, rendering the heavy transformer pipeline computationally cost-prohibitive for generic surveillance scenarios.
+conditions, localized architectural optimizations saturate tracking performance, rendering the heavy transformer pipeline computationally cost-prohibitive for generic surveillance scenarios.
