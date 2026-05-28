@@ -1,4 +1,4 @@
-Here is a clean, concise README for your project without any emojis.
+
 
 ---
 
