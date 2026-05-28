@@ -62,6 +62,9 @@ In the context of this tracking system's layout and coordinate space, **"entered
 | **Recall** | 0.74 | 0.76 | 0.87 |
 | **Unique Line Crossings** | 17 | 18 | 18 |
 
+
+![Report](model_comparison_report.png)
+
 ### Key Analytical Findings
 
 * **Edge Deployment Feasibility:** YOLO11-Nano demonstrates the highest operational efficiency, executing at 14.0 FPS on CPU with a minimized footprint of 2.6M parameters. It completely replaces the legacy YOLOv8-Nano baseline by improving processing speed and accuracy concurrently.
