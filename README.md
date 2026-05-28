@@ -63,6 +63,6 @@ In the context of this tracking system's layout and coordinate space, **"entered
 | **Unique Line Crossings** | 17 | 18 | 18 |
 
 
+
 ![Report](model_comparison_report.png)
 
-conditions, localized architectural optimizations saturate tracking performance, rendering the heavy transformer pipeline computationally cost-prohibitive for generic surveillance scenarios.
