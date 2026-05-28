@@ -7,15 +7,15 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from ultralytics import YOLO, RTDETR
 
-# 1. Configuration & Custom Path Coordinates
+
 VIDEO_PATH = r"TownCentreXVID.mp4"
 MAX_FRAMES = 500  
 
-# Exact points clicked on the road
+
 LINE_P1 = (1798, 747)  
 LINE_P2 = (169, 456)   
 
-# Normalize endpoints so the horizontal slope math stays completely stable (X1 < X2)
+
 if LINE_P1[0] > LINE_P2[0]:
     START_POINT = LINE_P2
     END_POINT = LINE_P1
@@ -27,8 +27,8 @@ else:
 BENCHMARK_DATA = {
     "YOLOv8-Nano": {
         "model_weights": "yolov8n.pt",
-        "map50": 52.3,       # COCO val mAP@0.5 (%)
-        "map50_95": 37.1,    # COCO val mAP@0.5:0.95 (%)
+        "map50": 52.3,    
+        "map50_95": 37.1,    
         "model_size_mb": 6.2,
         "params_M": 3.2,
         "precision": 0.81,   
@@ -55,9 +55,9 @@ BENCHMARK_DATA = {
 }
 
 MODELS = list(BENCHMARK_DATA.keys())
-PALETTE = ["#00C6FF", "#7B61FF", "#FF5C7A"]   # cyan / violet / rose
+PALETTE = ["#00C6FF", "#7B61FF", "#FF5C7A"]  
 
-# 2. Main Evaluation Pipeline
+
 for model_name in MODELS:
     print(f"\n--- Starting Evaluation: {model_name} ---")
     model_weights = BENCHMARK_DATA[model_name]["model_weights"]
@@ -69,7 +69,7 @@ for model_name in MODELS:
         
     cap = cv2.VideoCapture(VIDEO_PATH)
     if not cap.isOpened():
-        print(f"❌ ERROR: Could not open video file at '{VIDEO_PATH}'.")
+        print(f"ERROR: Could not open video file at '{VIDEO_PATH}'.")
         continue
 
     frame_count = 0
@@ -138,19 +138,19 @@ for model_name in MODELS:
     cv2.destroyAllWindows()
     end_wall_time = time.time()
     
-    # Calculate real-time runtime parameters
+   
     if frame_count > 0:
         avg_inference_ms = (total_inference_time / frame_count) * 1000
         fps = frame_count / (end_wall_time - start_wall_time)
     else:
         avg_inference_ms, fps = 0, 0
     
-    # 3. Dynamically feed calculated data back into dictionary structure
+
     BENCHMARK_DATA[model_name]["avg_latency_ms"] = round(avg_inference_ms, 2)
     BENCHMARK_DATA[model_name]["fps"] = round(fps, 2)
     BENCHMARK_DATA[model_name]["people_crossed"] = len(logged_crossings)
 
-# 4. Graphical Rendering Loop Execution
+
 print("\n📊 Model runs completed. Generating comparison visualization grid...")
 
 fig = plt.figure(figsize=(20, 14), facecolor="#0D0D1A")
@@ -184,7 +184,7 @@ def bar_chart(ax, key, title, unit="", invert_better=False):
     bars[best_idx].set_edgecolor("#FFD700")
     bars[best_idx].set_linewidth(2.5)
 
-# Subplots definitions
+
 ax1 = fig.add_subplot(gs[0, 0])
 bar_chart(ax1, "avg_latency_ms", "Avg Inference Latency  (lower ★)", unit=" ms", invert_better=True)
 ax1.set_ylabel("milliseconds", color="#AAAACC", fontsize=8)
