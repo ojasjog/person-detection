@@ -35,5 +35,5 @@ print("Dataset downloaded to:", path)
 ## Moving the Data to Your Workspace
 
 1. Navigate to the path printed by the script above.
-2. Locate the folder named `versions/1` and find the file named `TownCentreXVID.avi`.
-3. Copy or move `TownCentreXVID.avi` directly into the root folder of this cloned repository, or update the `VIDEO_PATH` variable in the script to match this cache folder location.
+2. Locate the folder named `versions/1` and find the file named `TownCentreXVID.mp4`.
+3. Copy or move `TownCentreXVID.mp4` directly into the root folder of this cloned repository, or update the `VIDEO_PATH` variable in the script to match this cache folder location.
